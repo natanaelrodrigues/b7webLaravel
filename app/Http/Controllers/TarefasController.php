@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class TarefasController extends Controller
 {
     public function list(){
-        $list = DB::select('SELECT * FROM tarefa');
+        $list = DB::select('SELECT * FROM tarefas');
         return view('tarefas.list',[
             'list' => $list
         ]);

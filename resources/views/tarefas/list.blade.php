@@ -19,6 +19,6 @@
             @endforeach
         </ul>
     @else 
-        Não há itens  serem listados.
+        <br> Não há itens  serem listados.
     @endif
 @endsection
