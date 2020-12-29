@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarefasController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Controllers\TarefasController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'index']);
 
 Route::prefix('/tarefas')->group(function(){
     Route::get('/',  [TarefasController::class, 'list'])->name('tarefas.list');  // listagem das tarefas
