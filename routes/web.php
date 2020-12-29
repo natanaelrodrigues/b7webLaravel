@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarefasController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,19 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class,'index']);
+
+Route::resource('todo',TodoController::class);
+// Rotas do resource
+/*
+    GET - /todo           - index   - todo.index   - LISTA OS ITENS
+    GET - /todo/create    - create  - todo.create  - FORM DE CRIAÇÃO
+    POST - /todo          - store   - todo.store   - RECEBER OS DADOS E ADD ITEM
+    GET - /todo/{id}      - show    - todo.show    - ITEM INDIVIDUAL
+    GET - /todo/{id}/edit - edit    - todo.edit    - FORM DE EDIÇÃO
+    PUT - /todo/{id}      - update  - todo.update  - RECEBER OS DADOS E UPDATE ITEM
+    DELETE - /todo/{id}   - destroy - todo.destroy - DELETAR O ITEM
+*/
+//fim rotas do resource
 
 Route::prefix('/tarefas')->group(function(){
     Route::get('/',  [TarefasController::class, 'list'])->name('tarefas.list');  // listagem das tarefas
