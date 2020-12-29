@@ -76,8 +76,13 @@ class TarefasController extends Controller
         } 
     }
 
-    public function del(){
-        
+    public function del($id){
+        DB::delete('DELETE FROM TAREFAS WHERE ID= :id',[
+            'id'=> $id
+        ]);
+
+        return redirect()->route('tarefas.list');
+
     }
 
     public function done(){
