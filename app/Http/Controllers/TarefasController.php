@@ -18,7 +18,7 @@ class TarefasController extends Controller
         }
     }
 
-    public function list(){
+    public function list(Request $request){
         // PERMISSÕES QUE SÃO DEFINIDAS No AuthServiceProvaider.php
         if (!Gate::allow('isAdmin')){
             echo 'Usuario Administrador';
@@ -26,6 +26,21 @@ class TarefasController extends Controller
             echo 'Este Usuário não possui perfil de Administrador';
         };
 
+        // SESSÃO
+        /*
+            Grava a sessão
+            intval converte para interiro.
+        */
+        $tries = intval($request->session()->get('passagem',0)); 
+        $request->session()->put('passagem',++$tries);
+        /*
+            @pega a sessão
+            @param1 - Nome da variavel na sessão
+            @param2 - valor Padrão
+        */
+        $tries = $request->session()->get('passagem',0); 
+        // apagar uma sessão
+        //$request->session()->forget('passagem');
         // ORM
         $list = Tarefa::all();
 
