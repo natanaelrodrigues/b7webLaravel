@@ -40,3 +40,13 @@ Route::prefix('/tarefas')->group(function(){
     Route::get('delete/{id}',[TarefasController::class, 'del'])->name('tarefas.del'); // Ação de deleção da Tarefa
     Route::get('marcar/{id}',[TarefasController::class, 'done'])->name('tarefas.done');  // MArcar resolvido ou nao resolvido
 });
+Auth::routes();
+
+Route::prefix('/config')->group(function(){
+    Route::get('/',  [Admin\ConfigController::class, 'index'])->name('config.index'); 
+    Route::post('/',  [Admin\ConfigController::class, 'index']); 
+    Route::get('/info',  [Admin\ConfigController::class, 'info']); 
+    Route::get('/permissoes',  [Admin\ConfigController::class, 'permissoes']); 
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

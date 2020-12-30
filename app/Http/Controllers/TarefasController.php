@@ -3,12 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Suport\Facedes\Gate;
 
 use App\Models\Tarefa;
 
 class TarefasController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+
+        if (!Gate::allow('isActive')){
+            redirect.rote('login');
+        }
+    }
+
     public function list(){
+        // PERMISSÕES QUE SÃO DEFINIDAS No AuthServiceProvaider.php
+        if (!Gate::allow('isAdmin')){
+            echo 'Usuario Administrador';
+        } else {
+            echo 'Este Usuário não possui perfil de Administrador';
+        };
+
         // ORM
         $list = Tarefa::all();
 
